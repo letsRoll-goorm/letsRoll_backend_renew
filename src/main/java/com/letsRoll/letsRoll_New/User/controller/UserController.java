@@ -22,8 +22,12 @@ public class UserController {
     private UserService userService;
     private final JwtUtils jwtUtils;;
 
+    @GetMapping("/check-server")
+    public BaseResponse<String> checkServer() {
+        return new BaseResponse<>("서버가 정상적으로 작동중입니다");
+    }
 
-    @GetMapping("/index")
+        @GetMapping("/index")
     public BaseResponse<String> loginForm(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         System.out.println("user = " + user);
