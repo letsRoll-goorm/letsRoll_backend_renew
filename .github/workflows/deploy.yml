@@ -46,7 +46,7 @@ jobs: # 실행 될 프로세스
         shell: bash
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: chmod +x ./gradlew
 
       # (3) Gradle build (Test 제외)
       - name: Build with Gradle
