@@ -54,6 +54,7 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-jar {
+
+jar { // 빌드 시 -plain.jar를 만들지 않기 위한 코드
 	enabled = false
 }
