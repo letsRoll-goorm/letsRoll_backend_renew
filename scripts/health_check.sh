@@ -26,4 +26,3 @@ do
   fi
   sleep 10
 done
-출처: https://www.devjoon.com/56 [🐤 JOON DEVSTORY:티스토리]
