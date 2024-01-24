@@ -48,11 +48,11 @@ public class JwtExceptionFilter extends OncePerRequestFilter {
             log.error(BaseResponseCode.MALFORMED_TOKEN.getMessage());
             request.setAttribute("exception", BaseResponseCode.MALFORMED_TOKEN.getCode());
             filterChain.doFilter(request, response);
-        }catch (ClaimJwtException exception) {
+        }/*catch (ClaimJwtException exception) {
             log.error("Token ClaimJwtException");
         } catch (CompressionException exception) {
             log.error("Token CompressionException");
-        }  catch (Exception exception) {
+        }*/  catch (Exception exception) {
             log.error(exception.getLocalizedMessage());
             log.error(BaseResponseCode.TOKEN_ERROR.getMessage());
             request.setAttribute("exception", BaseResponseCode.TOKEN_ERROR.getCode());
