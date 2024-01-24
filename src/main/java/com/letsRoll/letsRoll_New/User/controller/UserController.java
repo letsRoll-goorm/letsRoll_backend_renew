@@ -25,7 +25,6 @@ public class UserController {
         @GetMapping("/index")
     public BaseResponse<String> loginForm(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-        System.out.println("user = " + user);
         return new BaseResponse<>("authentication "+ user.getUserName() );
     }
 
