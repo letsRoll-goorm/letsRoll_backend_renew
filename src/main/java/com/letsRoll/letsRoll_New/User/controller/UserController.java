@@ -5,13 +5,13 @@ import com.letsRoll.letsRoll_New.Global.common.BaseResponse;
 import com.letsRoll.letsRoll_New.User.dto.response.UserTokenRes;
 import com.letsRoll.letsRoll_New.User.entity.User;
 import com.letsRoll.letsRoll_New.User.service.UserService;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -19,10 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserController {
-    private UserService userService;
     private final JwtUtils jwtUtils;;
 
-        @GetMapping("/index")
+    @GetMapping("/index")
     public BaseResponse<String> loginForm(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return new BaseResponse<>("authentication "+ user.getUserName() );
@@ -35,6 +34,5 @@ public class UserController {
 
         return new BaseResponse<>(UserTokenRes.toDto(jwtUtils.createToken(user.getSocialId(), user.getEmail())));
     }
-
 }
 

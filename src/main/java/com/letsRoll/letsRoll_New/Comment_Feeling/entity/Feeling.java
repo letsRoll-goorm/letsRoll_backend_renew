@@ -1,0 +1,44 @@
+package com.letsRoll.letsRoll_New.Comment_Feeling.entity;
+
+
+import com.letsRoll.letsRoll_New.Member.entity.Member;
+import com.letsRoll.letsRoll_New.Global.common.BaseEntity;
+import com.letsRoll.letsRoll_New.Global.enums.Emoji;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+@Entity
+@Getter
+@DynamicUpdate
+@DynamicInsert
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Feeling extends BaseEntity {
+    @Id
+    @Column(name = "feeling_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
+
+    @NonNull
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private Emoji emoji;
+
+    @Builder
+    public Feeling(@NonNull Member member,@NonNull  Comment comment, @NonNull Emoji emoji) {
+        this.member = member;
+        this.comment = comment;
+        this.emoji = emoji;
+    }
+}
